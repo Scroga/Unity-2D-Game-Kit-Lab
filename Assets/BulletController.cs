@@ -7,15 +7,14 @@ using UnityEngine.UIElements;
 public class BulletController : MonoBehaviour
 {
     [SerializeField]
-    public float Speed = 1.0f;
-
+    public float Speed = 2.0f;
 
     private Rigidbody2D rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.right * Speed;
+        rb.velocity = transform.right * Speed;
     }
 
     void Update()
@@ -24,13 +23,11 @@ public class BulletController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Destroy bullet");
         Destroy(gameObject);
     }
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Destroy bullet");
         Destroy(gameObject);
     }
 }

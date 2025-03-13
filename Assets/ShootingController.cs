@@ -7,24 +7,34 @@ public class ShootingController : MonoBehaviour
 {
     [SerializeField]
     public GameObject Bullet;
+    [SerializeField]
+    public GameObject BulletSpawner;
 
-    void Start()
-    {
-        
-    }
+    void Start() { }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
             float facing = GetComponent<PlayerCharacter>().GetFacing();
+            Vector3 bulletPosition;
+            Quaternion bulletRotation;
+            bool flipSprite = false;
 
-            Vector3 bulletPosition = (facing > 0) ? transform.Find("FacingRightBulletSpawnPoint").position : transform.Find("FacingLeftBulletSpawnPoint").position;
-            Quaternion bulletRotation = (facing > 0) ? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(0, 0, 180);
-
-            GameObject bulletInstance = Instantiate(Bullet, bulletPosition, bulletRotation);
-
+            if (facing > 0)
+            {
+                bulletPosition = transform.Find("FacingRightBulletSpawnPoint").position;
+                bulletRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else 
+            {
+                bulletPosition = transform.Find("FacingLeftBulletSpawnPoint").position;
+                bulletRotation = Quaternion.Euler(0, 0, 180);
+                flipSprite = true;
+            }
+            GameObject bulletInstance = Instantiate(Bullet, bulletPosition, bulletRotation, BulletSpawner.GetComponent<Transform>());
+            SpriteRenderer bulletSprite = bulletInstance.GetComponent<SpriteRenderer>();
+            bulletSprite.flipY = flipSprite;
         }
     }
 }
