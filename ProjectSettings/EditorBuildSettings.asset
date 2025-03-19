@@ -30,9 +30,9 @@ EditorBuildSettings:
     path: Assets/2DGamekit/Scenes/UI/Loading.unity
     guid: ebc4647ff02971c4ba1b207af066be4d
   - enabled: 1
-    path: Assets/MyZone.unity
+    path: Assets/MyAssets/MyZone.unity
     guid: 5cbdab3f5737cbb41af22965103b5415
   - enabled: 1
-    path: Assets/MyZone.unity
+    path: Assets/MyAssets/MyZone.unity
     guid: 5cbdab3f5737cbb41af22965103b5415
   m_configObjects: {}
